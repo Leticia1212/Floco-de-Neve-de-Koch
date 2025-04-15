@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Floco de Neve de Koch - Recursivo</title>
+</head>
+<div style="margin-top: 20px; display: flex; justify-content: center;">
+  <h3 style="color: rgb(0, 2, 129);">Floco de Neve de Koch</h3>
+</div>
+<!-- ideia que tiveram em sala, de colocar alinhado o canva na tella  --> 
+<body style="margin: 0; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+  <canvas id="gl-canvas" width="512" height="512" style="border: 2px solid rgb(0, 3, 155);"></canvas>
+
+  <div style="margin-top: 20px; display: flex; justify-content: center;">
+    <button style="color: rgb(0, 2, 129);" id="diminuirNivel">Diminuir Nivel</button>
+    <button style="color: rgb(0, 2, 129);" id="aumentarNivel">Aumentar Nivel</button>
+  </div>
+
+  <script id="fragment-shader" type="x-shader/x-fragment">
+    #version 300 es
+    precision highp float;
+    out vec4 fColor;
+    void main() {
+      fColor = vec4(0.0, 0.3, 0.8, 1.0); //Cor do Floco: Azul escuro
+    }
+  </script>
+
+  <script id="vertex-shader" type="x-shader/x-vertex">
+    #version 300 es
+    in vec4 aPosition;
+    uniform mat4 uTransform;
+    void main() {
+      gl_PointSize = 2.0;
+      gl_Position = uTransform * aPosition;
+    }
+  </script>
+
+  <script src="initShaders.js"></script>
+  <script src="MV.js"></script>
+  <script src="floco.js"></script>
+
+</body>
+</html>
